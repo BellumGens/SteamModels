@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SteamModels</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Konstantin Dinev</authors>
+    <owners>Konstantin Dinev</owners>
+    <licenseUrl>https://github.com/kdinev/SteamModels-DotNet/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/kdinev/SteamModels-DotNet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.NET models for Steam API entities.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>steam user stats api csgo group games models</tags>
+  </metadata>
+</package>
