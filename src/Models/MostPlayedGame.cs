@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SteamModels
+﻿namespace SteamModels
 {
     public class MostPlayedGame
     {
