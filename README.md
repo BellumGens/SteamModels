@@ -1,5 +1,7 @@
+
+
 # SteamModels-DotNet
-.NET Models for the Steam API
+.NET Models for the Steam API. Available on [NuGet](https://www.nuget.org/packages/SteamModels/).
 
 # Usage
 The Steam API results can be deserialized into the .NET model classes provided by SteamModels.  
@@ -29,3 +31,4 @@ public class SteamService
     }
 }
 ```
+
