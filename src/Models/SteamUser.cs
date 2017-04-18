@@ -117,7 +117,7 @@ namespace SteamModels
         /// <value>
         /// Since when the user is a member of steam.
         /// </value>
-        public DateTime memberSince { get; set; }
+        public string memberSince { get; set; }
 
         /// <summary>
         /// Gets or sets the hours played.

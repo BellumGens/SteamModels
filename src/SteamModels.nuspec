@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SteamModels</id>
-    <version>$version$</version>
+    <version>1.0.1</version>
     <title>$title$</title>
     <authors>Konstantin Dinev</authors>
     <owners>Konstantin Dinev</owners>
@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/kdinev/SteamModels-DotNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.NET models for Steam API entities.</description>
-    <releaseNotes>Initial release.</releaseNotes>
+    <releaseNotes>Changing the type of memberSince for the SteamUser model to string due to formatting issues with DateTime. Adding HeadshotPercentage to CSGOPlayerStats.</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>steam user stats api csgo group games models</tags>
   </metadata>
