@@ -11,6 +11,19 @@ namespace SteamModels
         private List<StatDescriptor> _killDeathStats;
         private decimal _killDeathRatio = -1;
         private decimal _headshotPercentage = -1;
+        private decimal _accuracy = -1;
+
+        /// <summary>
+        /// The stat names
+        /// </summary>
+        private static Dictionary<string, string> _statNames = new Dictionary<string, string>()
+        {
+            { "total_kills", "Total Kills" },
+            { "total_deaths", "Total Deaths" },
+            { "total_kills_headshot", "Total Headshots" },
+            { "total_shots_fired", "Total Shots" },
+            { "total_shots_hit", "Total Hits" }
+        };
 
         /// <summary>
         /// Gets or sets the kill death stats.
@@ -27,19 +40,9 @@ namespace SteamModels
                     _killDeathStats = new List<StatDescriptor>();
                     foreach (StatDescriptor stat in stats)
                     {
-                        if (stat.name == "total_kills")
+                        if (_statNames.ContainsKey(stat.name)) 
                         {
-                            stat.name = "Total Kills";
-                            _killDeathStats.Add(stat);
-                        }
-                        else if (stat.name == "total_deaths")
-                        {
-                            stat.name = "Total Deaths";
-                            _killDeathStats.Add(stat);
-                        }
-                        else if (stat.name == "total_kills_headshot")
-                        {
-                            stat.name = "Total Headshots";
+                            stat.name = _statNames[stat.name];
                             _killDeathStats.Add(stat);
                         }
                     }
@@ -98,6 +101,32 @@ namespace SteamModels
                 }
                 return Math.Round(_headshotPercentage, 2);
             }    
+        }
+
+        /// <summary>
+        /// Gets the overal accuracy percentage.
+        /// </summary>
+        /// <value>
+        /// The overal accuracy percentage.
+        /// </value>
+        public decimal Accuracy
+        {
+            get
+            {
+                decimal shots = 1, hits = -1;
+                if (_accuracy == -1)
+                {
+                    foreach (StatDescriptor stat in KillDeathStats)
+                    {
+                        if (stat.name == "Total Shots")
+                            shots = stat.value;
+                        if (stat.name == "Total Hits")
+                            hits = stat.value;
+                    }
+                    _accuracy = hits / shots * 100;
+                }
+                return Math.Round(_accuracy, 2);
+            }
         }
     }
 }
