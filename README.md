@@ -35,7 +35,8 @@ Example with `SteamNews`:
 ```C#
 public class SteamService
 {
-    private readonly string _steamAppNewsUrl = "http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid={0}&maxlength=300&format=json";
+    private readonly string _steamAppNewsUrl = 
+        "http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid={0}&maxlength=300&format=json";
 
     public async Task<SteamNews> GetSteamAppNewsJSON(int appid)
 	{
