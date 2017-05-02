@@ -1,5 +1,3 @@
-
-
 # SteamModels-DotNet
 .NET Models for the Steam API. Available on [NuGet](https://www.nuget.org/packages/SteamModels/).
 
@@ -32,3 +30,19 @@ public class SteamService
 }
 ```
 
+Example with `SteamNews`:
+
+```C#
+public class SteamService
+{
+    private readonly string _steamAppNewsUrl = "http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid={0}&maxlength=300&format=json";
+
+    public async Task<SteamNews> GetSteamAppNewsJSON(int appid)
+	{
+		HttpClient client = new HttpClient();
+		var steamnews = await client.GetStringAsync(string.format(this._steamAppNewsUrl, appid));
+		SteamNews news = JsonConvert.DeserializeObject<SteamNews>(steamnews);
+		return news;
+	}
+}
+```
