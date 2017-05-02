@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SteamModels
+namespace SteamModels.CSGO
 {
     /// <summary>
     /// View Model describing player statistics in CS:GO
