@@ -38,11 +38,11 @@ public class SteamService
     private readonly string _steamAppNewsUrl = "http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid={0}&maxlength=300&format=json";
 
     public async Task<SteamNews> GetSteamAppNewsJSON(int appid)
-	{
-		HttpClient client = new HttpClient();
-		var steamnews = await client.GetStringAsync(string.format(this._steamAppNewsUrl, appid));
-		SteamNews news = JsonConvert.DeserializeObject<SteamNews>(steamnews);
-		return news;
-	}
+    {
+	HttpClient client = new HttpClient();
+	var steamnews = await client.GetStringAsync(string.format(this._steamAppNewsUrl, appid));
+	SteamNews news = JsonConvert.DeserializeObject<SteamNews>(steamnews);
+	return news;
+    }
 }
 ```
