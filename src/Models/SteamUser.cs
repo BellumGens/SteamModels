@@ -4,6 +4,11 @@ using System.Xml.Serialization;
 
 namespace SteamModels
 {
+    /// <summary>
+    /// Describing steam user profile
+    /// GET: http://steamcommunity.com/profiles/<STEAMID64>/?xml=1
+    /// GET: http://steamcommunity.com/id/<CUSTOMURL>/?xml=1
+    /// </summary>
     [XmlRoot("profile")]
     public class SteamUser
     {
@@ -142,6 +147,20 @@ namespace SteamModels
         /// The location.
         /// </value>
         public string location { get; set; }
+
+        /// <summary>
+        /// Gets the user country, extracted from the user location.
+        /// </summary>
+        /// <value>
+        /// The user country.
+        /// </value>
+        public string country {
+            get
+            {
+                string[] parts = this.location.Split(',');
+                return parts[parts.Length - 1].Trim();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the user's realname.

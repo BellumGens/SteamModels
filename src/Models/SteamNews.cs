@@ -9,7 +9,7 @@ namespace SteamModels
 {
     /// <summary>
     /// Class describing the response format of the ISteamNews API interface.
-    /// e.g. http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=440&count=3&maxlength=300&format=json
+    /// GET: http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=440&count=3&maxlength=300&format=json
     /// </summary>
     public class SteamNews
     {

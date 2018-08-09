@@ -5,10 +5,10 @@ namespace SteamModels.CSGO
 {
     /// <summary>
     /// View Model describing player statistics in CS:GO
+    /// GET: http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key=<API_KEY>&steamid=<STEAMID64>&format=json
     /// </summary>
-    public class CSGOPlayerStats : PlayerStats
+    public class CSGOPlayerStats : SteamUserStats
     {
-        private List<StatDescriptor> _killDeathStats;
         private decimal _killDeathRatio = -1;
         private decimal _headshotPercentage = -1;
         private decimal _accuracy = -1;
@@ -16,40 +16,14 @@ namespace SteamModels.CSGO
         /// <summary>
         /// The stat names
         /// </summary>
-        private static Dictionary<string, string> _statNames = new Dictionary<string, string>()
-        {
-            { "total_kills", "Total Kills" },
-            { "total_deaths", "Total Deaths" },
-            { "total_kills_headshot", "Total Headshots" },
-            { "total_shots_fired", "Total Shots" },
-            { "total_shots_hit", "Total Hits" }
-        };
-
-        /// <summary>
-        /// Gets or sets the kill death stats.
-        /// </summary>
-        /// <value>
-        /// The kill death stats.
-        /// </value>
-        public List<StatDescriptor> KillDeathStats
-        {
-            get
-            {
-                if (_killDeathStats == null)
-                {
-                    _killDeathStats = new List<StatDescriptor>();
-                    foreach (StatDescriptor stat in stats)
-                    {
-                        if (_statNames.ContainsKey(stat.name)) 
-                        {
-                            stat.name = _statNames[stat.name];
-                            _killDeathStats.Add(stat);
-                        }
-                    }
-                }
-                return _killDeathStats;
-            }
-        }
+        //private static Dictionary<string, string> _statNames = new Dictionary<string, string>()
+        //{
+        //    { "total_kills", "Total Kills" },
+        //    { "total_deaths", "Total Deaths" },
+        //    { "total_kills_headshot", "Total Headshots" },
+        //    { "total_shots_fired", "Total Shots" },
+        //    { "total_shots_hit", "Total Hits" }
+        //};
 
         /// <summary>
         /// Gets the player kill death ratio, if total kills and total deaths have been populated. Otherwise -1 is returned.
@@ -57,18 +31,18 @@ namespace SteamModels.CSGO
         /// <value>
         /// The kill death ratio, if total kills and total deaths have been populated. Otherwise -1 is returned.
         /// </value>
-        public decimal KillDeathRatio
+        public decimal killDeathRatio
         {
             get
             {
                 decimal kills = 1, deaths = -1;
                 if (_killDeathRatio == -1)
                 {
-                    foreach (StatDescriptor stat in KillDeathStats)
+                    foreach (StatDescriptor stat in playerstats.stats)
                     {
-                        if (stat.name == "Total Kills")
+                        if (stat.name == "total_kills")
                             kills = stat.value;
-                        if (stat.name == "Total Deaths")
+                        if (stat.name == "total_deaths")
                             deaths = stat.value;
                     }
                     _killDeathRatio = kills / deaths;
@@ -83,18 +57,18 @@ namespace SteamModels.CSGO
         /// <value>
         /// The headshot percentage.
         /// </value>
-        public decimal HeadshotPercentage
+        public decimal headshotPercentage
         {
             get
             {
                 decimal kills = 1, headshots = -1;
                 if (_headshotPercentage == -1)
                 {
-                    foreach (StatDescriptor stat in KillDeathStats)
+                    foreach (StatDescriptor stat in playerstats.stats)
                     {
-                        if (stat.name == "Total Kills")
+                        if (stat.name == "total_kills")
                             kills = stat.value;
-                        if (stat.name == "Total Headshots")
+                        if (stat.name == "total_kills_headshot")
                             headshots = stat.value;
                     }
                     _headshotPercentage = headshots / kills * 100;
@@ -109,18 +83,18 @@ namespace SteamModels.CSGO
         /// <value>
         /// The overal accuracy percentage.
         /// </value>
-        public decimal Accuracy
+        public decimal accuracy
         {
             get
             {
                 decimal shots = 1, hits = -1;
                 if (_accuracy == -1)
                 {
-                    foreach (StatDescriptor stat in KillDeathStats)
+                    foreach (StatDescriptor stat in playerstats.stats)
                     {
-                        if (stat.name == "Total Shots")
+                        if (stat.name == "total_shots_fired")
                             shots = stat.value;
-                        if (stat.name == "Total Hits")
+                        if (stat.name == "total_shots_hit")
                             hits = stat.value;
                     }
                     _accuracy = hits / shots * 100;

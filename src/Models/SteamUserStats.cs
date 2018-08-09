@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace SteamModels
 {
+    /// <summary>
+    /// Describing generic player stats
+    /// GET: http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=<GAME_ID>&key=<API_KEY>&steamid=<STEAMID64>&format=json
+    /// </summary>
     public class SteamUserStats
     {
         /// <summary>
