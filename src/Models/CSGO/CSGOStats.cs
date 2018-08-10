@@ -114,12 +114,14 @@ namespace SteamModels.CSGO
                     List<StatDescriptor> stats = playerstats.stats.Where(s => s.name.StartsWith("total_kills_")).ToList();
                     foreach (StatDescriptor stat in stats)
                     {
+                        StatDescriptor shots = playerstats.stats.Where(s => s.name == stat.name.Replace("kills", "shots")).SingleOrDefault();
+                        StatDescriptor hits = playerstats.stats.Where(s => s.name == stat.name.Replace("kills", "hits")).SingleOrDefault();
                         _weapons.Add(new WeaponDescriptor()
                         {
                             name = stat.name.Replace("total_kills_", ""),
                             kills = stat.value,
-                            shots = playerstats.stats.Where(s => s.name == stat.name.Replace("kills", "shots")).Single().value,
-                            hits = playerstats.stats.Where(s => s.name == stat.name.Replace("kills", "hits")).Single().value
+                            shots = shots != null ? shots.value : -1,
+                            hits = hits != null ? hits.value : -1
                         });
                     }
                 }
@@ -137,7 +139,10 @@ namespace SteamModels.CSGO
         {
             get
             {
-                WeaponDescriptor fav = weapons.OrderByDescending(w => w.kills).First();
+                WeaponDescriptor fav = weapons.Where(w => !w.name.Contains("headshot") &&
+                                                          !w.name.Contains("enemy_weapon") &&
+                                                          !w.name.Contains("zoomed_sniper") &&
+                                                          !w.name.Contains("enemy_blinded")).OrderByDescending(w => w.kills).First();
                 return fav;
             }
         }
@@ -158,7 +163,7 @@ namespace SteamModels.CSGO
             {
                 if (_accuracy == -1)
                 {
-                    _accuracy = hits / shots * 100;
+                    _accuracy = (decimal)hits / shots * 100;
                 }
                 return Math.Round(_accuracy, 2);
             }
