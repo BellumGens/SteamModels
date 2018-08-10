@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SteamModels.CSGO
 {
@@ -12,6 +13,7 @@ namespace SteamModels.CSGO
         private decimal _killDeathRatio = -1;
         private decimal _headshotPercentage = -1;
         private decimal _accuracy = -1;
+        private List<WeaponDescriptor> _weapons;
 
         /// <summary>
         /// The stat names
@@ -97,6 +99,65 @@ namespace SteamModels.CSGO
                         if (stat.name == "total_shots_hit")
                             hits = stat.value;
                     }
+                    _accuracy = hits / shots * 100;
+                }
+                return Math.Round(_accuracy, 2);
+            }
+        }
+
+        public List<WeaponDescriptor> weapons {
+            get
+            {
+                if (_weapons == null)
+                {
+                    _weapons = new List<WeaponDescriptor>();
+                    List<StatDescriptor> stats = playerstats.stats.Where(s => s.name.StartsWith("total_kills_")).ToList();
+                    foreach (StatDescriptor stat in stats)
+                    {
+                        _weapons.Add(new WeaponDescriptor()
+                        {
+                            name = stat.name.Replace("total_kills_", ""),
+                            kills = stat.value,
+                            shots = playerstats.stats.Where(s => s.name == stat.name.Replace("kills", "shots")).Single().value,
+                            hits = playerstats.stats.Where(s => s.name == stat.name.Replace("kills", "hits")).Single().value
+                        });
+                    }
+                }
+                return _weapons;
+            }
+        }
+
+        /// <summary>
+        /// Gets the favourite weapon.
+        /// </summary>
+        /// <value>
+        /// The favourite weapon.
+        /// </value>
+        public WeaponDescriptor favouriteWeapon
+        {
+            get
+            {
+                WeaponDescriptor fav = weapons.OrderByDescending(w => w.kills).First();
+                return fav;
+            }
+        }
+    }
+
+    public class WeaponDescriptor
+    {
+        public string name;
+        public int kills;
+        public int shots;
+        public int hits;
+
+        private decimal _accuracy = -1;
+
+        public decimal accuracy
+        {
+            get
+            {
+                if (_accuracy == -1)
+                {
                     _accuracy = hits / shots * 100;
                 }
                 return Math.Round(_accuracy, 2);
