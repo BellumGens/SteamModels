@@ -157,6 +157,8 @@ namespace SteamModels
         public string country {
             get
             {
+				if (this.location == null)
+					return null;
                 string[] parts = this.location.Split(',');
                 return parts[parts.Length - 1].Trim();
             }

@@ -46,3 +46,37 @@ public class SteamService
     }
 }
 ```
+
+Example with `SteamUserStats`:
+
+```C#
+public class SteamService
+{
+    private readonly string _steamUserStatsUrl = "http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid={0}&key={1}&steamid={2}&format=json";
+
+    public static SteamUserStats GetStatsForGame(string username)
+    {
+        HttpClient client = new HttpClient();
+        var statsForGameResponse = client.GetStringAsync(string.Format(_steamUserStatsUrl, SteamInfo.Config.gameId, SteamInfo.Config.steamApiKey, username));
+        SteamUserStats statsForUser = JsonConvert.DeserializeObject<SteamUserStats>(statsForGameResponse.Result);
+        return statsForUser;
+    }
+}
+```
+
+Example with `CSGOPlayerStats`, which is a superset of `SteamUserStats` with specific parsing for some CS:GO stats, like HS%, Accuracy, Top Weapon, Total Kills, etc:
+
+```C#
+public class SteamService
+{
+    private readonly string _steamUserStatsUrl = "http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid={0}&key={1}&steamid={2}&format=json";
+
+    public static CSGOPlayerStats GetStatsForGame(string username)
+    {
+        HttpClient client = new HttpClient();
+        var statsForGameResponse = client.GetStringAsync(string.Format(_steamUserStatsUrl, 730, SteamInfo.Config.steamApiKey, username));
+        CSGOPlayerStats statsForUser = JsonConvert.DeserializeObject<CSGOPlayerStats>(statsForGameResponse.Result);
+        return statsForUser;
+    }
+}
+```
