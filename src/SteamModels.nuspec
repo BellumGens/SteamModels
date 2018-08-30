@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>SteamModels</id>
-    <version>1.1.3</version>
+    <version>1.2.0</version>
     <title>$title$</title>
     <authors>Konstantin Dinev</authors>
     <owners>Konstantin Dinev</owners>
@@ -10,8 +10,8 @@
     <projectUrl>https://github.com/BellumGens/SteamModels-DotNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.NET models for Steam API entities.</description>
-    <releaseNotes>Adding SteamNews model. Changing the namespace of CSGO specific models to SteamModels.CSGO. Adding accuracy to the CSGOPlayerStats.</releaseNotes>
-    <copyright>Copyright 2017</copyright>
+    <releaseNotes>Fixing the SteamUser model to correctly deserialize/serialize Steam Groups and Most Played Games. Adding SteamGroup as a standalone model.</releaseNotes>
+    <copyright>Copyright 2018</copyright>
     <tags>steam user stats api csgo group games models</tags>
   </metadata>
 </package>
