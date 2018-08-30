@@ -37,6 +37,7 @@
     <Compile Include="Models\CSGO\CSGOStats.cs" />
     <Compile Include="Models\MostPlayedGame.cs" />
     <Compile Include="Models\SteamGroup.cs" />
+    <Compile Include="Models\SteamUserGroup.cs" />
     <Compile Include="Models\SteamNews.cs" />
     <Compile Include="Models\SteamUser.cs" />
     <Compile Include="Models\SteamUserStats.cs" />

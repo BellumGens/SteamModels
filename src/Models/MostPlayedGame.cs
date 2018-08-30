@@ -43,10 +43,10 @@
         public string gameLogoSmall { get; set; }
 
         /// <summary>
-        /// Gets or sets the hours the user has played the game for.
+        /// Gets or sets the hours the user has played the game for recently.
         /// </summary>
         /// <value>
-        /// The hours the user has played the game for.
+        /// The hours the user has played the game for recently.
         /// </value>
         public float hoursPlayed { get; set; }
 
@@ -56,7 +56,7 @@
         /// <value>
         /// The hours on record.
         /// </value>
-        public int hoursOnRecord { get; set; }
+        public string hoursOnRecord { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the stats.

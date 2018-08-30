@@ -186,6 +186,7 @@ namespace SteamModels
         /// <value>
         /// The most played games.
         /// </value>
+        [XmlArrayItem("mostPlayedGame")]
         public List<MostPlayedGame> mostPlayedGames { get; set; }
 
         /// <summary>
@@ -194,6 +195,7 @@ namespace SteamModels
         /// <value>
         /// The steam groups the user is a member of.
         /// </value>
-        public List<SteamGroup> groups { get; set; }
+        [XmlArrayItem("group")]
+        public List<SteamUserGroup> groups { get; set; }
     }
 }

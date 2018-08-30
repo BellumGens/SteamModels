@@ -1,26 +1,79 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
 
-namespace SteamModels
+namespace SteamModels.Models
 {
-    public class SteamGroup
+    /// <summary>
+    /// Describes a SteamGroup
+    /// GET: https://steamcommunity.com/gid/<GROUP_ID64>/memberslistxml/?xml=1
+    /// GET: https://steamcommunity.com/groups/<GROUP_URL>/memberslistxml/?xml=1
+    /// </summary>
+    [XmlRoot("memberList")]
+    class SteamGroup
     {
         /// <summary>
-        /// Gets or sets a value indicating whether this group is primary for the <see cref="SteamUser"/>.
+        /// Gets or sets the group id 64.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if this group is primary group for the <see cref="SteamUser"/>; otherwise, <c>false</c>.
-        /// </value>
-        [XmlAttribute("isPrimary")]
-        public bool isPrimary { get; set; }
-
-        /// <summary>
-        /// Gets or sets the group id.
-        /// </summary>
-        /// <value>
-        /// The group id.
+        /// The group id 64.
         /// </value>
         public string groupID64 { get; set; }
 
+        /// <summary>
+        /// Gets or sets the member count.
+        /// </summary>
+        /// <value>
+        /// The member count.
+        /// </value>
+        public int memberCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets the total pages.
+        /// </summary>
+        /// <value>
+        /// The total pages.
+        /// </value>
+        public int totalPages { get; set; }
+
+        /// <summary>
+        /// Gets or sets the current page.
+        /// </summary>
+        /// <value>
+        /// The current page.
+        /// </value>
+        public int currentPage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the starting member.
+        /// </summary>
+        /// <value>
+        /// The starting member.
+        /// </value>
+        public int startingMember { get; set; }
+
+        public SteamGroupDetails groupDetails { get; set; }
+
+        [XmlArrayItem("steamID64")]
+        public SteamGroupMembers members { get; set; }
+    }
+
+    /// <summary>
+    /// Describes the Steam group members by their steamID64
+    /// </summary>
+    public class SteamGroupMembers
+    {
+        public string steamID64 { get; set; }
+    }
+
+    /// <summary>
+    /// Describes the Steam group details
+    /// </summary>
+    public class SteamGroupDetails
+    {
         /// <summary>
         /// Gets or sets the name of the group.
         /// </summary>
@@ -38,75 +91,75 @@ namespace SteamModels
         public string groupURL { get; set; }
 
         /// <summary>
-        /// Gets or sets the group headline.
+        /// Gets or sets the headline.
         /// </summary>
         /// <value>
-        /// The group headline.
+        /// The headline.
         /// </value>
         public string headline { get; set; }
 
         /// <summary>
-        /// Gets or sets the group summary.
+        /// Gets or sets the summary.
         /// </summary>
         /// <value>
-        /// The group summary.
+        /// The summary.
         /// </value>
         public string summary { get; set; }
 
         /// <summary>
-        /// Gets or sets the group avatar icon.
+        /// Gets or sets the avatar icon.
         /// </summary>
         /// <value>
-        /// The group avatar icon.
+        /// The avatar icon.
         /// </value>
         public string avatarIcon { get; set; }
 
         /// <summary>
-        /// Gets or sets the group avatar icon medium.
+        /// Gets or sets the avatar medium.
         /// </summary>
         /// <value>
-        /// The group avatar icon medium.
+        /// The avatar medium.
         /// </value>
         public string avatarMedium { get; set; }
 
         /// <summary>
-        /// Gets or sets the group avatar icon full.
+        /// Gets or sets the avatar full.
         /// </summary>
         /// <value>
-        /// The group avatar icon full.
+        /// The avatar full.
         /// </value>
         public string avatarFull { get; set; }
 
         /// <summary>
-        /// Gets or sets the group member count.
+        /// Gets or sets the member count.
         /// </summary>
         /// <value>
-        /// The group member count.
+        /// The member count.
         /// </value>
         public int memberCount { get; set; }
 
         /// <summary>
-        /// Gets or sets the group members in chat.
+        /// Gets or sets the members in chat.
         /// </summary>
         /// <value>
-        /// The group members in chat.
+        /// The members in chat.
         /// </value>
         public int membersInChat { get; set; }
 
         /// <summary>
-        /// Gets or sets the group members in game.
+        /// Gets or sets the members in game.
         /// </summary>
         /// <value>
-        /// The group members in game.
+        /// The members in game.
         /// </value>
         public int membersInGame { get; set; }
 
         /// <summary>
-        /// Gets or sets the group members online.
+        /// Gets or sets the members online.
         /// </summary>
         /// <value>
-        /// The group members online.
+        /// The members online.
         /// </value>
-        public int membersOnLine { get; set; }
+        public int membersOnline { get; set; }
     }
 }
