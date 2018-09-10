@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace SteamModels.Models
+namespace SteamModels
 {
     /// <summary>
     /// Describes a SteamGroup
@@ -13,7 +13,7 @@ namespace SteamModels.Models
     /// GET: https://steamcommunity.com/groups/<GROUP_URL>/memberslistxml/?xml=1
     /// </summary>
     [XmlRoot("memberList")]
-    class SteamGroup
+    public class SteamGroup
     {
         /// <summary>
         /// Gets or sets the group id 64.
