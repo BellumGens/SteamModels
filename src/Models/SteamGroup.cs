@@ -58,7 +58,7 @@ namespace SteamModels
         public SteamGroupDetails groupDetails { get; set; }
 
         [XmlArrayItem("steamID64")]
-        public SteamGroupMembers members { get; set; }
+        public List<SteamGroupMembers> members { get; set; }
     }
 
     /// <summary>
