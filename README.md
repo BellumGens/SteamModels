@@ -4,7 +4,7 @@
 # Usage
 The Steam API results can be deserialized into the .NET model classes provided by SteamModels.  
 
-## Example with `SteamUser`:
+### Example with `SteamUser`:
 
 ```C#
 public class SteamService
@@ -30,7 +30,7 @@ public class SteamService
 }
 ```
 
-## Example with `SteamNews`:
+### Example with `SteamNews`:
 
 ```C#
 public class SteamService
@@ -47,7 +47,7 @@ public class SteamService
 }
 ```
 
-## Example with `SteamUserStats`:
+### Example with `SteamUserStats`:
 
 ```C#
 public class SteamService
@@ -64,7 +64,7 @@ public class SteamService
 }
 ```
 
-## Example with `CSGOPlayerStats`, which is a superset of `SteamUserStats` with specific parsing for some CS:GO stats, like HS%, Accuracy, Top Weapon, Total Kills, etc:
+### Example with `CSGOPlayerStats`, which is a superset of `SteamUserStats` with specific parsing for some CS:GO stats, like HS%, Accuracy, Top Weapon, Total Kills, etc:
 
 ```C#
 public class SteamService
@@ -81,7 +81,7 @@ public class SteamService
 }
 ```
 
-## Example with `SteamGroup`
+### Example with `SteamGroup`
 
 ```C#
 private static readonly string _groupMembersUrl = "https://steamcommunity.com/gid/{0}/memberslistxml/?xml=1";
