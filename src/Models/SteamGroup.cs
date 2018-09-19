@@ -55,18 +55,22 @@ namespace SteamModels
         /// </value>
         public int startingMember { get; set; }
 
-        public SteamGroupDetails groupDetails { get; set; }
+		/// <summary>
+		/// Gets or sets the group details.
+		/// </summary>
+		/// <value>
+		/// The group details.
+		/// </value>
+		public SteamGroupDetails groupDetails { get; set; }
 
-        [XmlArrayItem("steamID64")]
-        public List<SteamGroupMembers> members { get; set; }
-    }
-
-    /// <summary>
-    /// Describes the Steam group members by their steamID64
-    /// </summary>
-    public class SteamGroupMembers
-    {
-        public string steamID64 { get; set; }
+		/// <summary>
+		/// Gets or sets the members as list of SteamID64 for each steam user.
+		/// </summary>
+		/// <value>
+		/// The group members.
+		/// </value>
+		[XmlArrayItem("steamID64")]
+        public List<string> members { get; set; }
     }
 
     /// <summary>
