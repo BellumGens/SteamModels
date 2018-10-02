@@ -1,7 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Version>1.2.1</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageTags>steam, dotnetcore, models, csgo, steam user, steam group, steam user stats</PackageTags>
+    <PackageReleaseNotes>Making the SteamGroup a public class and exposing members a list of SteamID64.</PackageReleaseNotes>
+    <Description>.NET models for Steam API entities.</Description>
+    <Authors>Konstantin Dinev</Authors>
+    <Copyright>Copyright 2018</Copyright>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/BellumGens/SteamModels-DotNet/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/BellumGens/SteamModels-DotNet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/BellumGens/SteamModels-DotNet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +21,7 @@
     <Compile Include="..\Models\SteamGroup.cs" Link="Models\SteamGroup.cs" />
     <Compile Include="..\Models\SteamNews.cs" Link="Models\SteamNews.cs" />
     <Compile Include="..\Models\SteamUser.cs" Link="Models\SteamUser.cs" />
+    <Compile Include="..\Models\SteamUserGroup.cs" Link="Models\SteamUserGroup.cs" />
     <Compile Include="..\Models\SteamUserStats.cs" Link="Models\SteamUserStats.cs" />
   </ItemGroup>
 
