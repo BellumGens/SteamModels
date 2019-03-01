@@ -142,7 +142,8 @@ namespace SteamModels.CSGO
                 WeaponDescriptor fav = weapons.Where(w => !w.name.Contains("headshot") &&
                                                           !w.name.Contains("enemy_weapon") &&
                                                           !w.name.Contains("zoomed_sniper") &&
-                                                          !w.name.Contains("enemy_blinded")).OrderByDescending(w => w.kills).First();
+                                                          !w.name.Contains("enemy_blinded") &&
+														  !w.name.Contains("knife_fight")).OrderByDescending(w => w.kills).First();
                 return fav;
             }
         }
