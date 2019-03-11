@@ -27,10 +27,24 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
+# - task: VSTest@2
+#   inputs:
+#     platform: '$(buildPlatform)'
+#     configuration: '$(buildConfiguration)'
+
+- task: NuGetCommand@2
+  displayName: 'NuGet pack'
   inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: pack
+    packagesToPack: '**/*.csproj'
+
+# steps:
+# - task: NuGetCommand@2
+#   displayName: 'NuGet push'
+#   inputs:
+#     command: push
+#     nuGetFeedType: external
+#     publishFeedCredentials: 'kdinev NuGet'
 
 - task: PublishBuildArtifacts@1
   inputs:
