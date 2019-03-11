@@ -14,6 +14,7 @@ namespace SteamModels.CSGO
         private decimal _headshotPercentage = -1;
         private decimal _accuracy = -1;
         private List<WeaponDescriptor> _weapons;
+		private WeaponDescriptor _favWeapon;
 
         /// <summary>
         /// The stat names
@@ -139,12 +140,15 @@ namespace SteamModels.CSGO
         {
             get
             {
-                WeaponDescriptor fav = weapons.Where(w => !w.name.Contains("headshot") &&
-                                                          !w.name.Contains("enemy_weapon") &&
-                                                          !w.name.Contains("zoomed_sniper") &&
-                                                          !w.name.Contains("enemy_blinded") &&
-														  !w.name.Contains("knife_fight")).OrderByDescending(w => w.kills).First();
-                return fav;
+				if (_favWeapon == null && weapons != null)
+				{
+					_favWeapon = weapons.Where(w => !w.name.Contains("headshot") &&
+															  !w.name.Contains("enemy_weapon") &&
+															  !w.name.Contains("zoomed_sniper") &&
+															  !w.name.Contains("enemy_blinded") &&
+															  !w.name.Contains("knife_fight")).OrderByDescending(w => w.kills).First();
+				}
+                return _favWeapon;
             }
         }
     }
