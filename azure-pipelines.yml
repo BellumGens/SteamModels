@@ -36,15 +36,7 @@ steps:
   displayName: 'NuGet pack'
   inputs:
     command: pack
-    packagesToPack: '**/*.csproj'
-
-# steps:
-# - task: NuGetCommand@2
-#   displayName: 'NuGet push'
-#   inputs:
-#     command: push
-#     nuGetFeedType: external
-#     publishFeedCredentials: 'kdinev NuGet'
+    packagesToPack: '**/SteamModels.csproj'
 
 - task: PublishBuildArtifacts@1
   inputs:
