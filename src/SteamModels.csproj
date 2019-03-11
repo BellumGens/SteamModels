@@ -40,6 +40,7 @@
     <Compile Include="Models\SteamUserGroup.cs" />
     <Compile Include="Models\SteamNews.cs" />
     <Compile Include="Models\SteamUser.cs" />
+    <Compile Include="Models\SteamUsersSummary.cs" />
     <Compile Include="Models\SteamUserStats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

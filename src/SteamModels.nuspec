@@ -2,11 +2,11 @@
 <package>
   <metadata>
     <id>SteamModels</id>
-    <version>1.2.1</version>
+    <version>$version$</version>
     <title>$title$</title>
     <authors>Konstantin Dinev</authors>
     <owners>Konstantin Dinev</owners>
-    <licenseUrl>https://raw.githubusercontent.com/BellumGens/SteamModels-DotNet/master/LICENSE</licenseUrl>
+    <license>https://raw.githubusercontent.com/BellumGens/SteamModels-DotNet/master/LICENSE</license>
     <projectUrl>https://github.com/BellumGens/SteamModels-DotNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.NET models for Steam API entities.</description>
