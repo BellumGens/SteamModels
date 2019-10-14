@@ -10,9 +10,9 @@ namespace SteamModels.CSGO
     /// </summary>
     public class CSGOPlayerStats : SteamUserStats
     {
-        private decimal _killDeathRatio = -1;
-        private decimal _headshotPercentage = -1;
-        private decimal _accuracy = -1;
+        private decimal _killDeathRatio = 0;
+        private decimal _headshotPercentage = 0;
+        private decimal _accuracy = 0;
         private List<WeaponDescriptor> _weapons;
 		private WeaponDescriptor _favWeapon;
 
@@ -38,8 +38,8 @@ namespace SteamModels.CSGO
         {
             get
             {
-                decimal kills = 1, deaths = -1;
-                if (_killDeathRatio == -1)
+                decimal kills = 0, deaths = 1;
+                if (_killDeathRatio == 0)
                 {
                     foreach (StatDescriptor stat in playerstats.stats)
                     {
@@ -64,8 +64,8 @@ namespace SteamModels.CSGO
         {
             get
             {
-                decimal kills = 1, headshots = -1;
-                if (_headshotPercentage == -1)
+                decimal kills = 1, headshots = 0;
+                if (_headshotPercentage == 0)
                 {
                     foreach (StatDescriptor stat in playerstats.stats)
                     {
@@ -90,8 +90,8 @@ namespace SteamModels.CSGO
         {
             get
             {
-                decimal shots = 1, hits = -1;
-                if (_accuracy == -1)
+                decimal shots = 1, hits = 0;
+                if (_accuracy == 0)
                 {
                     foreach (StatDescriptor stat in playerstats.stats)
                     {
@@ -121,8 +121,8 @@ namespace SteamModels.CSGO
                         {
                             name = stat.name.Replace("total_kills_", ""),
                             kills = stat.value,
-                            shots = shots != null ? shots.value : -1,
-                            hits = hits != null ? hits.value : -1
+                            shots = shots != null ? shots.value : 1,
+                            hits = hits != null ? hits.value : 0
                         });
                     }
                 }
@@ -146,7 +146,7 @@ namespace SteamModels.CSGO
 															  !w.name.Contains("enemy_weapon") &&
 															  !w.name.Contains("zoomed_sniper") &&
 															  !w.name.Contains("enemy_blinded") &&
-															  !w.name.Contains("knife_fight")).OrderByDescending(w => w.kills).First();
+															  !w.name.Contains("knife_fight")).OrderByDescending(w => w.kills).FirstOrDefault();
 				}
                 return _favWeapon;
             }
@@ -160,13 +160,13 @@ namespace SteamModels.CSGO
         public int shots;
         public int hits;
 
-        private decimal _accuracy = -1;
+        private decimal _accuracy = 0;
 
         public decimal accuracy
         {
             get
             {
-                if (_accuracy == -1)
+                if (_accuracy == 0)
                 {
                     _accuracy = (decimal)hits / shots * 100;
                 }
