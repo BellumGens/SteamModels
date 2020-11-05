@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2042
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamModels", "src\SteamModels.csproj", "{3D8014A1-7817-47E0-8E63-160E6F702485}"
 EndProject
@@ -20,6 +20,7 @@ Global
 		{876CE353-6663-400A-BC85-E1E1C4B06EAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{876CE353-6663-400A-BC85-E1E1C4B06EAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{876CE353-6663-400A-BC85-E1E1C4B06EAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{876CE353-6663-400A-BC85-E1E1C4B06EAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
