@@ -6,7 +6,7 @@
     <title>$title$</title>
     <authors>Konstantin Dinev</authors>
     <owners>Konstantin Dinev</owners>
-    <license>https://raw.githubusercontent.com/BellumGens/SteamModels-DotNet/master/LICENSE</license>
+    <licenseUrl>https://raw.githubusercontent.com/BellumGens/SteamModels-DotNet/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/BellumGens/SteamModels-DotNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.NET models for Steam API entities.</description>
