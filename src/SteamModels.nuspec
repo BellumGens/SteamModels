@@ -6,12 +6,12 @@
     <title>$title$</title>
     <authors>Konstantin Dinev</authors>
     <owners>Konstantin Dinev</owners>
-    <licenseUrl>https://raw.githubusercontent.com/BellumGens/SteamModels-DotNet/master/LICENSE</licenseUrl>
+    <license>https://raw.githubusercontent.com/BellumGens/SteamModels-DotNet/master/LICENSE</license>
     <projectUrl>https://github.com/BellumGens/SteamModels-DotNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.NET models for Steam API entities.</description>
-    <releaseNotes>Making the SteamGroup a public class and exposing members a list of SteamID64.</releaseNotes>
-    <copyright>Copyright 2018</copyright>
+    <releaseNotes>$releasenotes$</releaseNotes>
+    <copyright>Copyright 2020</copyright>
     <tags>steam user stats api csgo group games models</tags>
   </metadata>
 </package>

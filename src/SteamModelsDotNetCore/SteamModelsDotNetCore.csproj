@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
-    <Version>1.2.1</Version>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Version>1.3.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>steam, dotnetcore, models, csgo, steam user, steam group, steam user stats</PackageTags>
-    <PackageReleaseNotes>Making the SteamGroup a public class and exposing members a list of SteamID64.</PackageReleaseNotes>
-    <Description>.NET models for Steam API entities.</Description>
+    <PackageReleaseNotes>.NET Core 3.1 update</PackageReleaseNotes>
+    <Description>.NET Core models for Steam API entities.</Description>
     <Authors>Konstantin Dinev</Authors>
-    <Copyright>Copyright 2018</Copyright>
+    <Copyright>Copyright 2020</Copyright>
     <PackageLicenseUrl>https://raw.githubusercontent.com/BellumGens/SteamModels-DotNet/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/BellumGens/SteamModels-DotNet</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BellumGens/SteamModels-DotNet</RepositoryUrl>
