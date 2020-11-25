@@ -143,10 +143,10 @@ namespace SteamModels.CSGO
 				if (_favWeapon == null && weapons != null)
 				{
 					_favWeapon = weapons.Where(w => !w.name.Contains("headshot") &&
-															  !w.name.Contains("enemy_weapon") &&
-															  !w.name.Contains("zoomed_sniper") &&
-															  !w.name.Contains("enemy_blinded") &&
-															  !w.name.Contains("knife_fight")).OrderByDescending(w => w.kills).FirstOrDefault();
+													!w.name.Contains("enemy_weapon") &&
+													!w.name.Contains("zoomed_sniper") &&
+													!w.name.Contains("enemy_blinded") &&
+													!w.name.Contains("knife_fight")).OrderByDescending(w => w.kills).FirstOrDefault();
 				}
                 return _favWeapon;
             }
@@ -155,10 +155,10 @@ namespace SteamModels.CSGO
 
     public class WeaponDescriptor
     {
-        public string name;
-        public int kills;
-        public int shots;
-        public int hits;
+        public string name { get; set; }
+        public int kills { get; set; }
+        public int shots { get; set; }
+        public int hits { get; set; }
 
         private decimal _accuracy = 0;
 

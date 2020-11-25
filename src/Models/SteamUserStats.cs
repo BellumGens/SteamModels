@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace SteamModels
@@ -45,6 +46,7 @@ namespace SteamModels
         /// <value>
         /// The player stats.
         /// </value>
+        [JsonIgnore]
         public List<StatDescriptor> stats { get; set; }
 
         /// <summary>
@@ -53,6 +55,7 @@ namespace SteamModels
         /// <value>
         /// The achievements.
         /// </value>
+        [JsonIgnore]
         public List<AchievementDescriptor> achievements { get; set; }
     }
 
