@@ -22,7 +22,7 @@ steps:
 
 - task: NuGetToolInstaller@0
   inputs:
-    versionSpec: '4.8.2'
+    versionSpec: '5.8.0'
 
 - task: NuGetCommand@2
   inputs:
