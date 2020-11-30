@@ -42,7 +42,6 @@ namespace SteamModels
         /// <value>
         /// The player stats.
         /// </value>
-        [JsonIgnore]
         public List<StatDescriptor> stats { get; set; }
 
         /// <summary>
@@ -82,7 +81,6 @@ namespace SteamModels
     /// </summary>
     public class StatDescriptor
     {
-
         /// <summary>
         /// Gets or sets the name of the stat.
         /// </summary>
