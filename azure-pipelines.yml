@@ -43,7 +43,7 @@ steps:
   displayName: 'NuGet pack'
   inputs:
     command: pack
-    packagesToPack: '**/SteamModel.csproj'
+    packagesToPack: '**/*.csproj'
 
 - task: PublishBuildArtifacts@1
   inputs:
