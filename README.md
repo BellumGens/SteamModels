@@ -1,5 +1,5 @@
 # SteamModels-DotNet
-[![Build Status](https://dev.azure.com/BellumGens/Bellum%20Gens/_apis/build/status/BellumGens.SteamModels-DotNet?branchName=master)](https://dev.azure.com/BellumGens/Bellum%20Gens/_build/latest?definitionId=3&branchName=master)  
+[![Build Status](https://dev.azure.com/BellumGens/Bellum%20Gens/_apis/build/status/BellumGens.SteamModels?branchName=refs%2Fpull%2F5%2Fmerge)](https://dev.azure.com/BellumGens/Bellum%20Gens/_build/latest?definitionId=5&branchName=refs%2Fpull%2F5%2Fmerge)  
 .NET Models for the Steam API. Available on [NuGet](https://www.nuget.org/packages/SteamModels/).
 
 # Usage
