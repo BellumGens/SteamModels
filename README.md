@@ -2,8 +2,9 @@
 [![Build Status](https://dev.azure.com/BellumGens/Bellum%20Gens/_apis/build/status/BellumGens.SteamModels?branchName=refs%2Fpull%2F5%2Fmerge)](https://dev.azure.com/BellumGens/Bellum%20Gens/_build/latest?definitionId=5&branchName=refs%2Fpull%2F5%2Fmerge)
 [![.NET](https://github.com/BellumGens/SteamModels/actions/workflows/dotnet.yml/badge.svg)](https://github.com/BellumGens/SteamModels/actions/workflows/dotnet.yml)
 [![CodeQL](https://github.com/BellumGens/SteamModels/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/BellumGens/SteamModels/actions/workflows/codeql-analysis.yml)
+[![NuGet](https://img.shields.io/nuget/v/SteamModels)](https://www.nuget.org/packages/SteamModels/)
 
-.NET Models for the Steam API. Available on [NuGet](https://www.nuget.org/packages/SteamModels/).
+.NET Models for the Steam API.
 
 # Usage
 The Steam API results can be deserialized into the .NET model classes provided by SteamModels.  
