@@ -16,9 +16,9 @@ variables:
 
 steps:
 - task: UseDotNet@2
-  displayName: 'Use .Net sdk 5.x'	
+  displayName: 'Use .Net sdk 6.x'	
   inputs:
-    version: 5.x
+    version: 6.x
 
 - task: NuGetToolInstaller@0
   inputs:
