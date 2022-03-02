@@ -8,9 +8,9 @@
     <PackageReleaseNotes>Version bump</PackageReleaseNotes>
     <Description>.NET Core models for Steam API entities.</Description>
     <Authors>Konstantin Dinev</Authors>
-    <Copyright>Copyright Bellum Gens 2021</Copyright>
+    <Copyright>2019-2022 Bellum Gens</Copyright>
     <PackageLicenseUrl></PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/BellumGens/SteamModels</PackageProjectUrl>
+    <PackageProjectUrl>https://bellumgens.com</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BellumGens/SteamModels</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -35,7 +35,7 @@
     </None>
     <None Include="Assets\avatar_BG_blood.png">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 
