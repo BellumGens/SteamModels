@@ -16,9 +16,9 @@ variables:
 
 steps:
 - task: UseDotNet@2
-  displayName: 'Use .Net sdk 8.x'	
+  displayName: 'Use .Net sdk 9.x'	
   inputs:
-    version: 8.x
+    version: 9.x
 
 - task: NuGetToolInstaller@0
 
