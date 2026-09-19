@@ -16,9 +16,9 @@ variables:
 
 steps:
 - task: UseDotNet@2
-  displayName: 'Use .Net sdk 9.x'	
+  displayName: 'Use .Net sdk 10.x'	
   inputs:
-    version: 9.x
+    version: 10.x
 
 - task: NuGetToolInstaller@0
 
@@ -32,16 +32,18 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-# - task: VSTest@2
-#   inputs:
-#     platform: '$(buildPlatform)'
-#     configuration: '$(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
+  inputs:
+    command: test
+    projects: 'tests/**/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
 
 - task: NuGetCommand@2
   displayName: 'NuGet pack'
   inputs:
     command: pack
-    packagesToPack: '**/*.csproj'
+    packagesToPack: 'src/**/*.csproj'
 
 - task: PublishBuildArtifacts@1
   inputs:

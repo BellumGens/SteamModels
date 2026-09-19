@@ -180,6 +180,33 @@ namespace SteamModels
         public string summary { get; set; }
 
         /// <summary>
+        /// Gets or sets the ip of the game server the user is currently playing on.
+        /// Only present in the profile xml while the user is on a game server.
+        /// </summary>
+        /// <value>
+        /// The in game server ip.
+        /// </value>
+        public string inGameServerIP { get; set; }
+
+        /// <summary>
+        /// Gets or sets the details of the game the user is currently playing.
+        /// Only present in the profile xml while the user is in game.
+        /// </summary>
+        /// <value>
+        /// The in game info.
+        /// </value>
+        public SteamUserInGameInfo inGameInfo { get; set; }
+
+        /// <summary>
+        /// Gets or sets the web links the user has added to their profile.
+        /// </summary>
+        /// <value>
+        /// The web links.
+        /// </value>
+        [XmlArrayItem("weblink")]
+        public List<SteamUserWeblink> weblinks { get; set; }
+
+        /// <summary>
         /// Gets or sets the most played games.
         /// </summary>
         /// <value>
@@ -196,5 +223,73 @@ namespace SteamModels
         /// </value>
         [XmlArrayItem("group")]
         public List<SteamUserGroup> groups { get; set; }
+    }
+
+    /// <summary>
+    /// Describes the game a <see cref="SteamUser"/> is currently playing.
+    /// </summary>
+    public class SteamUserInGameInfo
+    {
+        /// <summary>
+        /// Gets or sets the name of the game.
+        /// </summary>
+        /// <value>
+        /// The name of the game.
+        /// </value>
+        public string gameName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the game link.
+        /// </summary>
+        /// <value>
+        /// The game link.
+        /// </value>
+        public string gameLink { get; set; }
+
+        /// <summary>
+        /// Gets or sets the game icon.
+        /// </summary>
+        /// <value>
+        /// The game icon.
+        /// </value>
+        public string gameIcon { get; set; }
+
+        /// <summary>
+        /// Gets or sets the game logo.
+        /// </summary>
+        /// <value>
+        /// The game logo.
+        /// </value>
+        public string gameLogo { get; set; }
+
+        /// <summary>
+        /// Gets or sets the game logo small.
+        /// </summary>
+        /// <value>
+        /// The game logo small.
+        /// </value>
+        public string gameLogoSmall { get; set; }
+    }
+
+    /// <summary>
+    /// Describes a web link a <see cref="SteamUser"/> has added to their profile.
+    /// </summary>
+    public class SteamUserWeblink
+    {
+        /// <summary>
+        /// Gets or sets the title of the link.
+        /// </summary>
+        /// <value>
+        /// The title of the link.
+        /// </value>
+        public string title { get; set; }
+
+        /// <summary>
+        /// Gets or sets the url of the link.
+        /// </summary>
+        /// <value>
+        /// The url of the link.
+        /// </value>
+        public string link { get; set; }
     }
 }

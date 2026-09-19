@@ -52,6 +52,24 @@ namespace SteamModels
         /// </value>
         [JsonIgnore]
         public List<AchievementDescriptor> achievements { get; set; }
+
+        /// <summary>
+        /// Gets or sets the error returned instead of the stats, e.g. "Profile is not public".
+        /// When this is populated <see cref="stats"/> and <see cref="achievements"/> are null.
+        /// </summary>
+        /// <value>
+        /// The error.
+        /// </value>
+        public string error { get; set; }
+
+        /// <summary>
+        /// Gets a value indicating whether the request returned stats rather than an error.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if stats were returned; otherwise, <c>false</c>.
+        /// </value>
+        [JsonIgnore]
+        public bool success => error == null && stats != null;
     }
 
     /// <summary>
