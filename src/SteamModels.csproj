@@ -1,21 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <Version>9.0.1</Version>
+    <TargetFramework>net10.0</TargetFramework>
+    <!-- Local default. Releases override this from the git tag, see .github/workflows/publish.yml.
+         AssemblyVersion and FileVersion are intentionally not set so they follow Version. -->
+    <Version>0.0.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageTags>steam, dotnetcore, models, csgo, steam user, steam group, steam user stats</PackageTags>
-    <PackageReleaseNotes>Version bump</PackageReleaseNotes>
-    <Description>.NET Core models for Steam API entities.</Description>
+    <PackageTags>steam, dotnetcore, models, csgo, cs2, dota2, dota 2, steam user, steam group, steam user stats, match details</PackageTags>
+    <PackageReleaseNotes>Targets .NET 10. Adds Dota 2 models covering match history, match details, heroes, rarities, live league games, top live games, team info and tournament prize pools, all checked against live Steam API responses. Adds the player summary fields the Steam API returns today, profile in game info, web links and steam rating, news item tags, and the error payload returned for private profiles. Fixes SteamUserGroup.membersOnLine, which never deserialized because the profile xml spells it membersOnline. Hardens the CS:GO derived stats against private profiles and zero denominators.</PackageReleaseNotes>
+    <Description>.NET models for Steam API entities, with game specific models for Counter-Strike and Dota 2.</Description>
     <Authors>kdinev</Authors>
-    <Copyright>2019-2025 Bellum Gens</Copyright>
+    <Copyright>2019-2026 Bellum Gens</Copyright>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://bellumgens.com</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BellumGens/SteamModels</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <AssemblyVersion>9.0.1.0</AssemblyVersion>
-    <FileVersion>9.0.1.0</FileVersion>
     <Company>Bellum Gens</Company>
     <PackageIcon>avatar_BG_blood.png</PackageIcon>
     <PackageIconUrl />
@@ -28,7 +28,7 @@
   <ItemGroup>
     <None Include="..\LICENSE">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
+      <PackagePath>\</PackagePath>
     </None>
     <None Include="Assets\avatar_BG_blood.png">
       <Pack>True</Pack>

@@ -52,6 +52,28 @@ namespace SteamModels
         /// </value>
         [JsonIgnore]
         public List<AchievementDescriptor> achievements { get; set; }
+
+        /// <summary>
+        /// Gets or sets the error returned instead of the stats.
+        /// When this is populated <see cref="stats"/> and <see cref="achievements"/> are null.
+        /// The Steam API currently signals a private profile with an http 400 and an empty body
+        /// rather than with this field, so it is only a fallback for interfaces that still use it.
+        /// </summary>
+        /// <value>
+        /// The error.
+        /// </value>
+        public string error { get; set; }
+
+        /// <summary>
+        /// Gets a value indicating whether the request actually returned stats.
+        /// An account that owns the game but has no stats for it comes back as an http 200 with a
+        /// steamID and a gameName but no stats array at all, which this reports as <c>false</c>.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if stats were returned; otherwise, <c>false</c>.
+        /// </value>
+        [JsonIgnore]
+        public bool success => error == null && stats != null;
     }
 
     /// <summary>

@@ -141,5 +141,90 @@ namespace SteamModels
 		/// The loccountrycode.
 		/// </value>
 		public string loccountrycode { get; set; }
+
+		/// <summary>
+		/// Gets or sets the locstatecode.
+		/// </summary>
+		/// <value>
+		/// The locstatecode.
+		/// </value>
+		public string locstatecode { get; set; }
+
+		/// <summary>
+		/// Gets or sets the loccityid.
+		/// </summary>
+		/// <value>
+		/// The loccityid.
+		/// </value>
+		public int loccityid { get; set; }
+
+		/// <summary>
+		/// Gets or sets the realname. Only returned when the profile is public.
+		/// </summary>
+		/// <value>
+		/// The realname.
+		/// </value>
+		public string realname { get; set; }
+
+		/// <summary>
+		/// Gets or sets the commentpermission. Present when the profile allows public comments.
+		/// </summary>
+		/// <value>
+		/// The commentpermission.
+		/// </value>
+		public int commentpermission { get; set; }
+
+		/// <summary>
+		/// Gets or sets the avatarhash, the SHA1 hash the avatar urls are built from.
+		/// </summary>
+		/// <value>
+		/// The avatarhash.
+		/// </value>
+		public string avatarhash { get; set; }
+
+		/// <summary>
+		/// Gets or sets the appid of the game the user is currently playing.
+		/// Returned as a string by the Steam API and only present while the user is in game.
+		/// </summary>
+		/// <value>
+		/// The gameid.
+		/// </value>
+		public string gameid { get; set; }
+
+		/// <summary>
+		/// Gets or sets the name of the game the user is currently playing.
+		/// Only present while the user is in game.
+		/// </summary>
+		/// <value>
+		/// The gameextrainfo.
+		/// </value>
+		public string gameextrainfo { get; set; }
+
+		/// <summary>
+		/// Gets or sets the ip of the game server the user is currently playing on.
+		/// Only present while the user is on a game server.
+		/// </summary>
+		/// <value>
+		/// The gameserverip.
+		/// </value>
+		public string gameserverip { get; set; }
+
+		/// <summary>
+		/// Gets or sets the steam id of the game server the user is currently playing on.
+		/// Only present while the user is on a game server.
+		/// </summary>
+		/// <value>
+		/// The gameserversteamid.
+		/// </value>
+		public string gameserversteamid { get; set; }
+
+		/// <summary>
+		/// Gets or sets the steam id of the lobby the user is currently in.
+		/// Only present while the user is in a lobby.
+		/// </summary>
+		/// <value>
+		/// The lobbysteamid.
+		/// </value>
+		public string lobbysteamid { get; set; }
 	}
 }
