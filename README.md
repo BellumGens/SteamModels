@@ -1,5 +1,5 @@
 # SteamModels-DotNet
-[![Build Status](https://dev.azure.com/BellumGens/Bellum%20Gens/_apis/build/status/BellumGens.SteamModels?branchName=refs%2Fpull%2F5%2Fmerge)](https://dev.azure.com/BellumGens/Bellum%20Gens/_build/latest?definitionId=5&branchName=refs%2Fpull%2F5%2Fmerge)
+[![Publish](https://github.com/BellumGens/SteamModels/actions/workflows/publish.yml/badge.svg)](https://github.com/BellumGens/SteamModels/actions/workflows/publish.yml)
 [![.NET](https://github.com/BellumGens/SteamModels/actions/workflows/dotnet.yml/badge.svg)](https://github.com/BellumGens/SteamModels/actions/workflows/dotnet.yml)
 [![CodeQL](https://github.com/BellumGens/SteamModels/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/BellumGens/SteamModels/actions/workflows/codeql-analysis.yml)
 [![NuGet](https://img.shields.io/nuget/v/SteamModels)](https://www.nuget.org/packages/SteamModels/)
@@ -219,5 +219,40 @@ dotnet test
 
 The test suite covers the Steam API payload shapes the models map, including the quirks that are
 easy to regress: the error payloads returned for private profiles and unknown matches, the encoded
-player slot and building bit masks, the `rating` field the Steam API returns as a string, and the
-live Dota 2 scoreboard field names, which differ from the ones used by match details.
+player slot and building bit masks, the string ids and scientific notation timestamp that
+`GetTopLiveGame` returns, and the live Dota 2 scoreboard field names, which differ from the ones
+used by match details.
+
+## Releasing
+
+Releases go out through GitHub Actions. Publishing a GitHub Release runs
+[`publish.yml`](.github/workflows/publish.yml), which builds, runs the tests, packs and pushes to
+NuGet.org.
+
+The release tag is the version. Tag a release `v10.1.0`, and that is the version the package, the
+assembly and the file version all carry, so there is no version to bump in the csproj. The
+`<Version>` in `src/SteamModels.csproj` is only the local default for `dotnet build` and
+`dotnet pack` runs on your machine. Prereleases work the same way, tag them `v10.1.0-beta.1`.
+A tag that is not a version fails the workflow before anything is published.
+
+### Authentication
+
+The workflow authenticates to NuGet.org with
+[Trusted Publishing](https://learn.microsoft.com/nuget/nuget-org/trusted-publishing), so there is
+no API key stored in the repository. The job mints a GitHub OIDC token, NuGet.org exchanges it for
+an API key that lives a few minutes, and that key is used for the single push. Nothing long lived
+exists to leak or rotate.
+
+It needs a one time setup on NuGet.org, under your account, Trusted Publishing:
+
+| Field | Value |
+| --- | --- |
+| Package owner | `kdinev` |
+| Repository owner | `BellumGens` |
+| Repository | `SteamModels` |
+| Workflow file | `publish.yml` |
+
+The workflow file name has to match, so renaming `publish.yml` means updating the policy too.
+If the NuGet.org account ever changes, set a `NUGET_USER` repository variable rather than editing
+the workflow. The push uses `--skip-duplicate`, so re-running a release that already shipped is a
+no-op rather than a failure.

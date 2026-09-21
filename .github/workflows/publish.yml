@@ -1,0 +1,89 @@
+name: Publish
+
+# Publishing is deliberate: nothing reaches NuGet.org except by publishing a GitHub Release.
+# The release tag is the single source of truth for the package version, so tag releases
+# as v10.1.0 (or v10.1.0-beta.1 for a prerelease).
+#
+# Authentication is NuGet Trusted Publishing, so there is no API key stored anywhere. The job
+# mints a GitHub OIDC token, NuGet.org exchanges it for an API key that lives for a few minutes,
+# and that key is used for the push. NuGet.org has to have a trusted publishing policy for this
+# repository and for this workflow file, see the Releasing section of the README.
+on:
+  release:
+    types: [published]
+
+permissions:
+  # id-token is what lets the job mint the OIDC token NuGet.org exchanges. Without it the
+  # NuGet/login step fails.
+  id-token: write
+  contents: read
+
+concurrency:
+  group: publish-${{ github.event.release.tag_name }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Derive the package version from the release tag
+        id: version
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          version="${TAG#v}"
+          if ! printf '%s' "$version" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$'; then
+            echo "::error::Release tag '$TAG' is not a version. Tag releases like v10.1.0 or v10.1.0-beta.1."
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Publishing SteamModels $version"
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore -p:Version=${{ steps.version.outputs.version }}
+
+      - name: Test
+        run: dotnet test --configuration Release --no-build --verbosity normal
+
+      - name: Pack
+        run: >
+          dotnet pack src/SteamModels.csproj
+          --configuration Release
+          --no-build
+          -p:Version=${{ steps.version.outputs.version }}
+          --output artifacts
+
+      - name: Upload the package as a build artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: SteamModels-${{ steps.version.outputs.version }}
+          path: artifacts/*.nupkg
+          if-no-files-found: error
+
+      # Exchanges this job's OIDC token for a short lived NuGet.org API key.
+      # Set a NUGET_USER repository variable to override the NuGet.org account name.
+      - name: Log in to NuGet.org with OIDC
+        id: login
+        uses: NuGet/login@v1
+        with:
+          user: ${{ vars.NUGET_USER || 'kdinev' }}
+
+      - name: Push to NuGet.org
+        env:
+          NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
+        run: >
+          dotnet nuget push "artifacts/*.nupkg"
+          --api-key "$NUGET_API_KEY"
+          --source https://api.nuget.org/v3/index.json
+          --skip-duplicate
