@@ -107,6 +107,6 @@ namespace SteamModels
         /// <value>
         /// The group members online.
         /// </value>
-        public int membersOnLine { get; set; }
+        public int membersOnline { get; set; }
     }
 }

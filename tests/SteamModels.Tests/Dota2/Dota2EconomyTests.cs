@@ -31,48 +31,23 @@ namespace SteamModels.Tests.Dota2
         }
 
         [Fact]
-        public void GetGameItems_deserializes_and_flags_recipes()
-        {
-            Dota2GameItemsResult result = JsonSerializer.Deserialize<Dota2GameItems>("""
-            {"result":{"items":[
-              {"id":1,"name":"item_blink","cost":2250,"secret_shop":0,"side_shop":0,"recipe":0,
-               "localized_name":"Blink Dagger"},
-              {"id":40,"name":"item_recipe_bracer","cost":0,"secret_shop":0,"side_shop":0,"recipe":1,
-               "localized_name":"Recipe"}],"status":200}}
-            """).result;
-
-            Assert.Equal(2250, result.items[0].cost);
-            Assert.Equal("blink", result.items[0].shortName);
-            Assert.False(result.items[0].isRecipe);
-            Assert.True(result.items[1].isRecipe);
-        }
-
-        [Fact]
         public void GetRarities_deserializes()
         {
             Dota2RaritiesResult result = JsonSerializer.Deserialize<Dota2Rarities>("""
             {"result":{"rarities":[
-              {"name":"immortal","id":6,"localized_name":"Immortal","color":"#e4ae33"}],"status":200}}
+              {"name":"common","id":1,"order":0,"color":"#b0c3d9","localized_name":"Common"},
+              {"name":"immortal","id":6,"order":5,"color":"#e4ae33","localized_name":"Immortal"}],
+              "count":2,"status":200}}
             """).result;
 
-            Dota2Rarity rarity = Assert.Single(result.rarities);
-            Assert.Equal(6, rarity.id);
-            Assert.Equal("immortal", rarity.name);
-            Assert.Equal("#e4ae33", rarity.color);
-        }
-
-        [Fact]
-        public void GetLeagueListing_deserializes()
-        {
-            Dota2LeagueListingResult result = JsonSerializer.Deserialize<Dota2LeagueListing>("""
-            {"result":{"leagues":[{"name":"The International","leagueid":16935,
-            "description":"TI","tournament_url":"https://dota2.com","itemdef":12345}]}}
-            """).result;
-
-            Dota2League league = Assert.Single(result.leagues);
-            Assert.Equal(16935, league.leagueid);
-            Assert.Equal("The International", league.name);
-            Assert.Equal(12345, league.itemdef);
+            Assert.Equal(200, result.status);
+            Assert.Equal(2, result.count);
+            Assert.Equal(1, result.rarities[0].id);
+            Assert.Equal(0, result.rarities[0].order);
+            Assert.Equal("immortal", result.rarities[1].name);
+            Assert.Equal(5, result.rarities[1].order);
+            Assert.Equal("#e4ae33", result.rarities[1].color);
+            Assert.Equal("Immortal", result.rarities[1].localized_name);
         }
 
         [Fact]

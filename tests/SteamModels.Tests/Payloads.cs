@@ -17,7 +17,7 @@
           "players":[
             {"account_id":86745912,"player_slot":0,"team_number":0,"team_slot":0,"hero_id":8,"hero_variant":2,
              "item_0":108,"item_1":116,"item_2":0,"item_3":0,"item_4":0,"item_5":0,
-             "backpack_0":0,"backpack_1":0,"backpack_2":0,"item_neutral":289,
+             "backpack_0":0,"backpack_1":0,"backpack_2":0,"item_neutral":289,"item_neutral2":379,
              "kills":12,"deaths":4,"assists":6,"leaver_status":0,"last_hits":250,"denies":12,
              "gold_per_min":650,"xp_per_min":720,"level":25,"net_worth":24500,
              "aghanims_scepter":1,"aghanims_shard":1,"moonshard":0,

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text.Json.Serialization;
 
@@ -45,17 +44,11 @@ namespace SteamModels.Dota2
 
     /// <summary>
     /// Describes a single professional Dota 2 team.
+    /// The Steam API does not echo the team id back in this response, so it has to be tracked
+    /// from the start_at_team_id the request was made with.
     /// </summary>
     public class Dota2TeamDetails
     {
-        /// <summary>
-        /// Gets or sets the team id.
-        /// </summary>
-        /// <value>
-        /// The team id.
-        /// </value>
-        public uint team_id { get; set; }
-
         /// <summary>
         /// Gets or sets the name of the team.
         /// </summary>
@@ -73,22 +66,20 @@ namespace SteamModels.Dota2
         public string tag { get; set; }
 
         /// <summary>
+        /// Gets or sets the abbreviation of the team, e.g. "SEC".
+        /// </summary>
+        /// <value>
+        /// The abbreviation.
+        /// </value>
+        public string abbreviation { get; set; }
+
+        /// <summary>
         /// Gets or sets the unix timestamp the team was created at.
         /// </summary>
         /// <value>
         /// The time created.
         /// </value>
         public long time_created { get; set; }
-
-        /// <summary>
-        /// Gets or sets the rating of the team. The Steam API returns this as a string, and
-        /// reports "inactive" rather than a number for teams that no longer compete.
-        /// See <see cref="ratingValue"/> for the parsed value.
-        /// </summary>
-        /// <value>
-        /// The rating.
-        /// </value>
-        public string rating { get; set; }
 
         /// <summary>
         /// Gets or sets the ugc id of the team logo.
@@ -194,18 +185,6 @@ namespace SteamModels.Dota2
         /// The account id of the seventh team member.
         /// </value>
         public uint player_6_account_id { get; set; }
-
-        /// <summary>
-        /// Gets the rating of the team, or null when the team has no numeric rating,
-        /// e.g. when the Steam API reports it as "inactive".
-        /// </summary>
-        /// <value>
-        /// The rating of the team.
-        /// </value>
-        [JsonIgnore]
-        public int? ratingValue => int.TryParse(rating, NumberStyles.Integer, CultureInfo.InvariantCulture, out int parsed)
-            ? parsed
-            : (int?)null;
 
         /// <summary>
         /// Gets the time the team was created at.

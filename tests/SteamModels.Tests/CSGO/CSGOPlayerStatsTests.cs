@@ -105,6 +105,39 @@ namespace SteamModels.Tests.CSGO
         }
 
         [Fact]
+        public void An_account_with_no_stats_for_the_game_reports_no_success()
+        {
+            // the live shape for an owned game the account has never generated stats in:
+            // http 200, a steamID and a gameName, and no stats array at all
+            CSGOPlayerStats stats = Parse(
+                """{"playerstats":{"steamID":"76561198258595541","gameName":"Counter-Strike 2"}}""");
+
+            Assert.False(stats.playerstats.success);
+            Assert.Null(stats.playerstats.stats);
+            Assert.Null(stats.playerstats.error);
+            Assert.Equal("Counter-Strike 2", stats.playerstats.gameName);
+
+            // and the derived stats stay quiet rather than throwing
+            Assert.Equal(0m, stats.killDeathRatio);
+            Assert.Empty(stats.weapons);
+            Assert.Null(stats.favouriteWeapon);
+        }
+
+        [Fact]
+        public void The_game_name_reflects_appid_730_today_not_the_era_of_the_stats()
+        {
+            // an account with CS:GO matches and no CS2 matches still reports "Counter-Strike 2",
+            // so gameName cannot be used to tell CS:GO era stats from CS2 era stats
+            CSGOPlayerStats stats = Parse("""
+            {"playerstats":{"steamID":"76561198258595541","gameName":"Counter-Strike 2",
+            "stats":[{"name":"total_kills","value":54984},{"name":"total_deaths","value":41645}]}}
+            """);
+
+            Assert.Equal("Counter-Strike 2", stats.playerstats.gameName);
+            Assert.Equal(1.32m, stats.killDeathRatio);
+        }
+
+        [Fact]
         public void Stats_deserialize_into_the_base_model()
         {
             SteamUserStats stats = JsonSerializer.Deserialize<SteamUserStats>(RealStats);

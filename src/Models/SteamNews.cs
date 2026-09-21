@@ -133,6 +133,14 @@ namespace SteamModels
         public int feed_type { get; set; }
 
         /// <summary>
+        /// Gets or sets the tags of the news item, e.g. "patchnotes".
+        /// </summary>
+        /// <value>
+        /// The tags.
+        /// </value>
+        public List<string> tags { get; set; }
+
+        /// <summary>
         /// Gets or sets the appid of the app the news item is for.
         /// e.g. 730 will be for Counter Strike: Global Offensive
         /// </summary>

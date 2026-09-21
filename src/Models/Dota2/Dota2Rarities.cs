@@ -31,6 +31,14 @@ namespace SteamModels.Dota2
         public List<Dota2Rarity> rarities { get; set; }
 
         /// <summary>
+        /// Gets or sets the number of rarities returned.
+        /// </summary>
+        /// <value>
+        /// The count.
+        /// </value>
+        public int count { get; set; }
+
+        /// <summary>
         /// Gets or sets the status of the request. 200 means success.
         /// </summary>
         /// <value>
@@ -67,6 +75,14 @@ namespace SteamModels.Dota2
         /// The display name of the rarity.
         /// </value>
         public string localized_name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the position of the rarity in the rarity order, lowest is most common.
+        /// </summary>
+        /// <value>
+        /// The order.
+        /// </value>
+        public int order { get; set; }
 
         /// <summary>
         /// Gets or sets the hex colour the rarity is rendered in, e.g. "#e4ae33".

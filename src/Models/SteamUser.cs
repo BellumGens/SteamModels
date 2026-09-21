@@ -124,6 +124,14 @@ namespace SteamModels
         public string memberSince { get; set; }
 
         /// <summary>
+        /// Gets or sets the steam rating, which the profile xml returns empty for most accounts.
+        /// </summary>
+        /// <value>
+        /// The steam rating.
+        /// </value>
+        public string steamRating { get; set; }
+
+        /// <summary>
         /// Gets or sets the hours played.
         /// </summary>
         /// <value>

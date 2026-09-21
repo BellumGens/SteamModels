@@ -36,14 +36,26 @@ namespace SteamModels.Tests.Dota2
               "picks":[{"hero_id":14}],"bans":[{"hero_id":74}]}}}],"status":200}}
         """;
 
+        /// <summary>
+        /// The shape the Steam API actually returns. This interface hands back several of the
+        /// 64 bit ids as strings, and last_update_time in scientific notation.
+        /// </summary>
         private const string TopLiveGames = """
-        {"game_list":[{"activate_time":1700000000,"deactivate_time":1700003600,
-        "server_steam_id":90142294633437700,"lobby_id":26489891350930,"league_id":0,"lobby_type":7,
-        "game_time":900,"delay":120,"spectators":12,"game_mode":22,"average_mmr":9000,
-        "sort_score":99,"last_update_time":1700000900,"radiant_lead":4500,
-        "radiant_score":12,"dire_score":7,"building_state":16711679,
-        "team_id_radiant":0,"team_id_dire":0,
-        "players":[{"account_id":86745912,"hero_id":8},{"account_id":70388657,"hero_id":14}]}]}
+        {"search_key":"","league_id":0,"hero_id":0,"start_game":0,"num_games":0,"game_list_index":0,
+        "game_list":[{"activate_time":1789882577,"deactivate_time":1789882623,
+        "server_steam_id":"90293069356269591","lobby_id":"30027431856245751","league_id":0,
+        "lobby_type":7,"game_time":-14,"delay":120,"spectators":0,"game_mode":22,"average_mmr":8137,
+        "match_id":"9007550858","series_id":0,"team_name_radiant":"","team_name_dire":"",
+        "team_logo_radiant":"0","team_logo_dire":"0","team_id_radiant":0,"team_id_dire":0,
+        "sort_score":8637,"last_update_time":1.7898825e+09,"radiant_lead":0,
+        "radiant_score":0,"dire_score":0,
+        "players":[{"account_id":1229557033,"hero_id":0,"team_slot":1,"team":0},
+                   {"account_id":202691456,"hero_id":14,"team_slot":0,"team":1}],
+        "building_state":19138340,"weekend_tourney_tournament_id":0,"weekend_tourney_division":0,
+        "weekend_tourney_skill_level":0,"weekend_tourney_bracket_round":0,
+        "custom_game_difficulty":0,"is_player_draft":false,"is_watch_eligible":true}],
+        "specific_games":false,
+        "bot_game":{"activate_time":0,"deactivate_time":0,"server_steam_id":"0"}}
         """;
 
         private static Dota2LiveLeagueGame Game =>
@@ -173,15 +185,71 @@ namespace SteamModels.Tests.Dota2
         {
             Dota2TopLiveGames top = JsonSerializer.Deserialize<Dota2TopLiveGames>(TopLiveGames);
 
+            Assert.Equal(0, top.game_list_index);
+            Assert.False(top.specific_games);
+            Assert.NotNull(top.bot_game);
+
             Dota2TopLiveGame game = Assert.Single(top.game_list);
-            Assert.Equal(90142294633437700UL, game.server_steam_id);
-            Assert.Equal(9000, game.average_mmr);
-            Assert.Equal(4500, game.radiant_lead);
+            Assert.Equal(8137, game.average_mmr);
+            Assert.Equal(8637, game.sort_score);
+            Assert.Equal(19138340, game.building_state);
             Assert.Equal(Dota2GameMode.AllDraft, game.gameMode);
             Assert.Equal(Dota2LobbyType.Ranked, game.lobbyType);
-            Assert.Equal(TimeSpan.FromSeconds(900), game.gameTime);
+            Assert.True(game.is_watch_eligible);
+            Assert.False(game.is_player_draft);
+        }
+
+        [Fact]
+        public void The_string_ids_this_interface_returns_are_parsed()
+        {
+            Dota2TopLiveGame game =
+                JsonSerializer.Deserialize<Dota2TopLiveGames>(TopLiveGames).game_list[0];
+
+            Assert.Equal("9007550858", game.match_id);
+            Assert.Equal(9007550858L, game.matchId);
+            Assert.Equal(90293069356269591UL, game.serverSteamId);
+            Assert.Equal(30027431856245751UL, game.lobbyId);
+        }
+
+        [Fact]
+        public void An_unparsable_id_yields_null_rather_than_throwing()
+        {
+            Dota2TopLiveGame game = new Dota2TopLiveGame { match_id = "", server_steam_id = null };
+
+            Assert.Null(game.matchId);
+            Assert.Null(game.serverSteamId);
+        }
+
+        [Fact]
+        public void A_pre_game_lobby_reports_a_negative_game_time()
+        {
+            Dota2TopLiveGame game =
+                JsonSerializer.Deserialize<Dota2TopLiveGames>(TopLiveGames).game_list[0];
+
+            Assert.Equal(-14, game.game_time);
+            Assert.Equal(TimeSpan.FromSeconds(-14), game.gameTime);
+        }
+
+        [Fact]
+        public void The_scientific_notation_timestamp_is_read_as_a_number()
+        {
+            Dota2TopLiveGame game =
+                JsonSerializer.Deserialize<Dota2TopLiveGames>(TopLiveGames).game_list[0];
+
+            Assert.Equal(1789882500L, game.lastUpdateTime.ToUnixTimeSeconds());
+        }
+
+        [Fact]
+        public void Top_live_game_players_carry_a_team_and_slot()
+        {
+            Dota2TopLiveGame game =
+                JsonSerializer.Deserialize<Dota2TopLiveGames>(TopLiveGames).game_list[0];
+
             Assert.Equal(2, game.players.Count);
-            Assert.Equal(Payloads.SteamId64, game.players[0].steamId64);
+            Assert.Equal(Dota2Team.Radiant, game.players[0].playerTeam);
+            Assert.Equal(1, game.players[0].team_slot);
+            Assert.Equal(Dota2Team.Dire, game.players[1].playerTeam);
+            Assert.Equal(Dota2Ids.ToSteamId64(1229557033), game.players[0].steamId64);
         }
     }
 }

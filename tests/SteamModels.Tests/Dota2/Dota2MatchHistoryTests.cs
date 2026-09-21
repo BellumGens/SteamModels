@@ -9,7 +9,8 @@ namespace SteamModels.Tests.Dota2
         {"result":{"status":1,"num_results":1,"total_results":500,"results_remaining":499,
         "matches":[{"match_id":1900000000,"match_seq_num":1700000000,"start_time":1446069903,
         "lobby_type":7,"radiant_team_id":0,"dire_team_id":0,
-        "players":[{"account_id":86745912,"player_slot":0,"hero_id":8},
+        "players":[{"account_id":86745912,"player_slot":0,"hero_id":8,
+                    "team_number":0,"team_slot":0,"hero_variant":2},
                    {"account_id":4294967295,"player_slot":131,"hero_id":14}]}]}}
         """;
 
@@ -51,6 +52,9 @@ namespace SteamModels.Tests.Dota2
             Assert.Equal(Dota2Team.Radiant, match.players[0].team);
             Assert.Equal(0, match.players[0].slot);
             Assert.Equal(Payloads.SteamId64, match.players[0].steamId64);
+            Assert.Equal(0, match.players[0].team_number);
+            Assert.Equal(0, match.players[0].team_slot);
+            Assert.Equal(2, match.players[0].hero_variant);
 
             Assert.Equal(Dota2Team.Dire, match.players[1].team);
             Assert.Equal(3, match.players[1].slot);

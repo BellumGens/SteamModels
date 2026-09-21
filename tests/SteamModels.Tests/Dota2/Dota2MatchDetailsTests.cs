@@ -96,6 +96,7 @@ namespace SteamModels.Tests.Dota2
             Assert.Equal(0, player.team_number);
             Assert.Equal(0, player.team_slot);
             Assert.Equal(289, player.item_neutral);
+            Assert.Equal(379, player.item_neutral2);
         }
 
         [Fact]

@@ -197,6 +197,30 @@ namespace SteamModels.Dota2
         public int hero_id { get; set; }
 
         /// <summary>
+        /// Gets or sets the team number, 0 for the Radiant and 1 for the Dire.
+        /// </summary>
+        /// <value>
+        /// The team number.
+        /// </value>
+        public int team_number { get; set; }
+
+        /// <summary>
+        /// Gets or sets the zero based position of the player within their team.
+        /// </summary>
+        /// <value>
+        /// The team slot.
+        /// </value>
+        public int team_slot { get; set; }
+
+        /// <summary>
+        /// Gets or sets the facet, or hero variant, the player picked.
+        /// </summary>
+        /// <value>
+        /// The hero variant.
+        /// </value>
+        public int hero_variant { get; set; }
+
+        /// <summary>
         /// Gets the team the player played for.
         /// </summary>
         /// <value>

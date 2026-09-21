@@ -21,7 +21,7 @@ namespace SteamModels.Tests
           <isLimitedAccount>0</isLimitedAccount>
           <customURL><![CDATA[robinwalker]]></customURL>
           <memberSince>September 12, 2003</memberSince>
-          <steamRating/>
+          <steamRating>7.5</steamRating>
           <hoursPlayed2Wk>12.5</hoursPlayed2Wk>
           <headline><![CDATA[Half-Life]]></headline>
           <location><![CDATA[Bellevue, Washington, United States]]></location>
@@ -60,7 +60,7 @@ namespace SteamModels.Tests
               <memberCount>4000000</memberCount>
               <membersInChat>0</membersInChat>
               <membersInGame>1000</membersInGame>
-              <membersOnLine>50000</membersOnLine>
+              <membersOnline>50000</membersOnline>
             </group>
           </groups>
           <weblinks>
@@ -95,6 +95,7 @@ namespace SteamModels.Tests
             Assert.Equal("September 12, 2003", user.memberSince);
             Assert.Equal(12.5f, user.hoursPlayed2Wk);
             Assert.Equal("Robin Walker", user.realname);
+            Assert.Equal("7.5", user.steamRating);
             Assert.Equal("Works at Valve.", user.summary);
         }
 
@@ -156,7 +157,7 @@ namespace SteamModels.Tests
             Assert.Equal("Valve", group.groupName);
             Assert.Equal(4000000, group.memberCount);
             Assert.Equal(1000, group.membersInGame);
-            Assert.Equal(50000, group.membersOnLine);
+            Assert.Equal(50000, group.membersOnline);
         }
 
         [Fact]

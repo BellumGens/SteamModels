@@ -9,7 +9,8 @@ namespace SteamModels.Tests
           {"gid":"5136871107920571879","title":"Release Notes","url":"https://steamcommunity.com/ogg/730/announcements/detail/1",
            "is_external_url":true,"author":"Valve","contents":"Fixed a bug.",
            "feedlabel":"Community Announcements","date":1745000000,
-           "feedname":"steam_community_announcements","feed_type":1,"appid":730}],
+           "feedname":"steam_community_announcements","feed_type":1,"appid":730,
+           "tags":["patchnotes"]}],
           "count":1}}
         """;
 
@@ -37,6 +38,7 @@ namespace SteamModels.Tests
             Assert.Equal(1745000000, item.date);
             Assert.Equal(1, item.feed_type);
             Assert.Equal(730, item.appid);
+            Assert.Equal(new[] { "patchnotes" }, item.tags);
         }
     }
 }

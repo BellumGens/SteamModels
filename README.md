@@ -115,10 +115,8 @@ unix timestamps.
 | `Dota2MatchHistoryBySequenceNum` | `IDOTA2Match_570/GetMatchHistoryBySequenceNum/v1` |
 | `Dota2LiveLeagueGames` | `IDOTA2Match_570/GetLiveLeagueGames/v1` |
 | `Dota2TopLiveGames` | `IDOTA2Match_570/GetTopLiveGame/v1` |
-| `Dota2LeagueListing` | `IDOTA2Match_570/GetLeagueListing/v1` |
 | `Dota2TeamInfo` | `IDOTA2Match_570/GetTeamInfoByTeamID/v1` |
 | `Dota2Heroes` | `IEconDOTA2_570/GetHeroes/v1` |
-| `Dota2GameItems` | `IEconDOTA2_570/GetGameItems/v1` |
 | `Dota2Rarities` | `IEconDOTA2_570/GetRarities/v1` |
 | `Dota2TournamentPrizePool` | `IEconDOTA2_570/GetTournamentPrizePool/v1` |
 

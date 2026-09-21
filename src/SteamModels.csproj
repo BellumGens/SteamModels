@@ -5,7 +5,7 @@
     <Version>10.0.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>steam, dotnetcore, models, csgo, cs2, dota2, dota 2, steam user, steam group, steam user stats, match details</PackageTags>
-    <PackageReleaseNotes>Targets .NET 10. Adds Dota 2 models covering match history, match details, heroes, in game items, rarities, leagues, live league games, top live games and team info. Adds the player summary fields the Steam API returns today, profile in game info and web links, and the error payload returned for private profiles. Hardens the CS:GO derived stats against private profiles and zero denominators.</PackageReleaseNotes>
+    <PackageReleaseNotes>Targets .NET 10. Adds Dota 2 models covering match history, match details, heroes, rarities, live league games, top live games, team info and tournament prize pools, all checked against live Steam API responses. Adds the player summary fields the Steam API returns today, profile in game info, web links and steam rating, news item tags, and the error payload returned for private profiles. Fixes SteamUserGroup.membersOnLine, which never deserialized because the profile xml spells it membersOnline. Hardens the CS:GO derived stats against private profiles and zero denominators.</PackageReleaseNotes>
     <Description>.NET models for Steam API entities, with game specific models for Counter-Strike and Dota 2.</Description>
     <Authors>kdinev</Authors>
     <Copyright>2019-2026 Bellum Gens</Copyright>
@@ -28,7 +28,7 @@
   <ItemGroup>
     <None Include="..\LICENSE">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
+      <PackagePath>\</PackagePath>
     </None>
     <None Include="Assets\avatar_BG_blood.png">
       <Pack>True</Pack>

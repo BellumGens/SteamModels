@@ -552,7 +552,9 @@ namespace SteamModels.Dota2
         public string persona { get; set; }
 
         /// <summary>
-        /// Gets or sets the item in the first inventory slot. See <see cref="Dota2GameItem"/> for the item list.
+        /// Gets or sets the item in the first inventory slot.
+        /// The Steam API no longer exposes an item list to resolve the id against, so it has to
+        /// be looked up against the game files or a third party item list.
         /// </summary>
         /// <value>
         /// The item in the first inventory slot.
@@ -630,6 +632,14 @@ namespace SteamModels.Dota2
         /// The neutral item.
         /// </value>
         public int item_neutral { get; set; }
+
+        /// <summary>
+        /// Gets or sets the item in the second neutral slot, i.e. the neutral item enchantment.
+        /// </summary>
+        /// <value>
+        /// The second neutral item.
+        /// </value>
+        public int item_neutral2 { get; set; }
 
         /// <summary>
         /// Gets or sets the kills the player scored.
