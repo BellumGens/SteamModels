@@ -76,6 +76,3 @@ fields Valve returns encoded.
 - `WeaponDescriptor.accuracy` threw `DivideByZeroException` for a weapon with no shots fired.
 - The per weapon stat lookup used `SingleOrDefault`, which throws on a duplicate stat name. It now
   uses `FirstOrDefault`.
-
-[Unreleased]: https://github.com/BellumGens/SteamModels/compare/v10.0.0...HEAD
-[10.0.0]: https://github.com/BellumGens/SteamModels/releases/tag/v10.0.0
