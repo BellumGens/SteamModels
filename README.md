@@ -237,25 +237,3 @@ assembly and the file version all carry, so there is no version to bump in the c
 `<Version>` in `src/SteamModels.csproj` is only the local default for `dotnet build` and
 `dotnet pack` runs on your machine. Prereleases work the same way, tag them `v10.1.0-beta.1`.
 A tag that is not a version fails the workflow before anything is published.
-
-### Authentication
-
-The workflow authenticates to NuGet.org with
-[Trusted Publishing](https://learn.microsoft.com/nuget/nuget-org/trusted-publishing), so there is
-no API key stored in the repository. The job mints a GitHub OIDC token, NuGet.org exchanges it for
-an API key that lives a few minutes, and that key is used for the single push. Nothing long lived
-exists to leak or rotate.
-
-It needs a one time setup on NuGet.org, under your account, Trusted Publishing:
-
-| Field | Value |
-| --- | --- |
-| Package owner | `kdinev` |
-| Repository owner | `BellumGens` |
-| Repository | `SteamModels` |
-| Workflow file | `publish.yml` |
-
-The workflow file name has to match, so renaming `publish.yml` means updating the policy too.
-If the NuGet.org account ever changes, set a `NUGET_USER` repository variable rather than editing
-the workflow. The push uses `--skip-duplicate`, so re-running a release that already shipped is a
-no-op rather than a failure.
