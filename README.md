@@ -229,6 +229,9 @@ Releases go out through GitHub Actions. Publishing a GitHub Release runs
 [`publish.yml`](.github/workflows/publish.yml), which builds, runs the tests, packs and pushes to
 NuGet.org.
 
+Record what changed in [`CHANGELOG.md`](CHANGELOG.md) before you cut the release, so the release
+notes and the changelog agree.
+
 The release tag is the version. Tag a release `v10.1.0`, and that is the version the package, the
 assembly and the file version all carry, so there is no version to bump in the csproj. The
 `<Version>` in `src/SteamModels.csproj` is only the local default for `dotnet build` and
