@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFramework>net11.0</TargetFramework>
     <!-- Local default. Releases override this from the git tag, see .github/workflows/publish.yml.
          AssemblyVersion and FileVersion are intentionally not set so they follow Version. -->
     <Version>0.0.0</Version>
