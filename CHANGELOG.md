@@ -11,6 +11,17 @@ git log for those.
 
 ## [Unreleased]
 
+## [11.0.0] - 2026-11-17
+
+Moves the library to .NET 11. The models are unchanged from 10.0.0, so the target framework is the
+only difference.
+
+### Breaking
+
+- **The library now targets .NET 11.** It previously targeted .NET 10. Projects still on .NET 10
+  or earlier cannot consume 11.0.0. .NET 10 is a long term support release, so projects that are
+  staying on it can keep using 10.0.x, which has the same models.
+
 ## [10.0.0] - 2026-09-22
 
 Adds Dota 2 support and brings the existing models back in line with what the Steam API returns
